@@ -33,7 +33,7 @@ const thoughtController = {
       // Add this thought to the user's list of thoughts
       const user = await User.findOneAndUpdate(
         { _id: req.body.userId },
-        { $addToSet: { thoughts: thought._id } },
+        { $push: { thoughts: thought._id } },
         { new: true }
       );
 
@@ -42,8 +42,9 @@ const thoughtController = {
       }
 
       // Respond with the newly created thought
-      res.json(thought);
+      res.status(200).json(thought);
     } catch (err) {
+      console.log(err)
       res.status(500).json(err);
     }
   },
@@ -99,7 +100,7 @@ const thoughtController = {
   async addReaction(req, res) {
     try {
       const thought = await Thought.findOneAndUpdate(
-        { _id: req.params.id },
+        { _id: req.params.thoughtId },
         { $addToSet: { reactions: req.body } },
         { runValidators: true, new: true }
       );
@@ -111,6 +112,7 @@ const thoughtController = {
       // Respond with the updated thought
       res.json(thought);
     } catch (err) {
+      console.log(err)
       res.status(500).json(err);
     }
   },
@@ -119,7 +121,7 @@ const thoughtController = {
   async removeReaction(req, res) {
     try {
       const thought = await Thought.findOneAndUpdate(
-        { _id: req.params.id },
+        { _id: req.params.thoughtId },
         { $pull: { reactions: { reactionId: req.params.reactionId } } },
         { runValidators: true, new: true }
       );
@@ -131,6 +133,7 @@ const thoughtController = {
       // Respond with the updated thought
       res.json(thought);
     } catch (err) {
+      console.log(err)
       res.status(500).json(err);
     }
   },

@@ -1,4 +1,4 @@
-const reactionSchema = require('./Reaction');
+const { Schema, model } = require('mongoose');
 
 const UserSchema = new Schema(
 {
@@ -12,7 +12,7 @@ const UserSchema = new Schema(
         type: String,
         unique: true,
         required: true,
-        match: [/.+@.+\..+/, "Please enter a valid email adderss."]
+        match: [/.+@.+\..+/, "Please enter a valid email address."]
     },
     thoughts: [
         {

@@ -9,15 +9,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Import routes
-const userRoutes = require('./routes/api/user-routes');
-const thoughtRoutes = require('./routes/api/thought-routes');
+const userRoutes = require('./routes/api/userRoutes');
+const thoughtRoutes = require('./routes/api/thoughtRoutes');
 
 // Use routes
 app.use('/api/users', userRoutes);
 app.use('/api/thoughts', thoughtRoutes);
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/social-network-api', {
-  useFindAndModify: false,
+mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://aceresi95:password1234@cluster0.eatgszn.mongodb.net/', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
