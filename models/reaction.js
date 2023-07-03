@@ -9,11 +9,11 @@ const ReactionSchema = new Schema(
     reactionBody: {
       type: String,
       required: true,
-      maxLength: 280
+      maxLength: 280,
     },
     username: {
       type: String,
-      required: true
+      required: true,
     },
     createdAt: {
       type: Date,
@@ -23,7 +23,7 @@ const ReactionSchema = new Schema(
   },
   {
     toJSON: {
-      getters: true
+      getters: true,
     },
   }
 );
